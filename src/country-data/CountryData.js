@@ -1,35 +1,61 @@
 import React, { Component } from 'react';
 import { getCountryDataByID } from '../api';
+import moment from 'moment';
 import './CountryData.scss';
 
 class CountryData extends Component {
   state = {
-    data: {
-      status: null,
-      timeseries: null
-    }
+    status: null,
+    timeseries: null,
+    edgeValues: null
   };
 
   componentDidMount() {
     if (!this.props.id) return;
-    getCountryDataByID(this.props.id).then(data => {
-      data.timeseries.sort((first, second) => first[1] - second[1]);
-      this.setState({ data });
+    getCountryDataByID(this.props.id).then(({ status, timeseries }) => {
+      const edgeValues = this.findEdgeValues(timeseries);
+
+      this.setState({ status, timeseries, edgeValues });
     })
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.id === this.props.id) return;
-    getCountryDataByID(this.props.id).then(data => {
-      data.timeseries.sort((first, second) => first[1] - second[1]);
-      this.setState({ data });
+    getCountryDataByID(this.props.id).then(({ status, timeseries }) => {
+      const edgeValues = this.findEdgeValues(timeseries);
+
+      this.setState({ status, timeseries, edgeValues });
     })
+  }
+
+  findEdgeValues(timeseries) {
+    let min = timeseries[0];
+    let max = timeseries[0];
+    const defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
+    const newFormat = 'MMMM Do YYYY, h:mm:ss A (Z UTC)';
+
+    timeseries.forEach(elem => {
+      if (elem[1] < min[1]) min = elem;
+      if (elem[1] > max[1]) max = elem;
+    });
+
+    return {
+      min: {
+        value: min[1],
+        time: moment(min[0], defaultFormat).format(newFormat)
+      },
+      max: {
+        value: max[1],
+        time: moment(max[0], defaultFormat).format(newFormat)
+      }
+    };
   }
 
   render() {
     const { title } = this.props;
-    const { status, timeseries } = this.state.data;
-    // TODO: add graph and function for sorting and finding values
+    const { status, timeseries, edgeValues } = this.state;
+
+    // TODO: add graph
     return (
       <div>
         <h4>Country Name: {title}</h4>
@@ -37,8 +63,12 @@ class CountryData extends Component {
         {
           timeseries && (
             <div>
-              <div>Min value: {timeseries[0][1]} in time {timeseries[0][0]}</div>
-              <div>Max value: {timeseries[timeseries.length - 1][1]} in time {timeseries[timeseries.length - 1][0]}</div>
+              <div>
+                Min value: {edgeValues.min.value} in time {edgeValues.min.time}
+              </div>
+              <div>
+                Max value: {edgeValues.max.value} in time {edgeValues.max.time}
+              </div>
             </div>
           )
         }
