@@ -16,14 +16,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <aside>
+      <div className="app">
+        <nav className="app__navigation">
           <CountriesList onChooseCountry={this.changeCountryID.bind(this)} />
-        </aside>
-        <main>
+        </nav>
+        <main className="app__data-container">
           {
-            this.state.countryID && (
+            this.state.countryID ? (
               <CountryData id={this.state.countryID} title={this.state.countryName} />
+            ) : (
+              <h3 className="info">Please, select any country</h3>
             )
           }
         </main>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getCountryDataByID } from '../api';
 import moment from 'moment';
+import { getCountryDataByID } from '../api';
 import Graph from '../graph/Graph';
 import './CountryData.scss';
 
@@ -57,18 +57,18 @@ class CountryData extends Component {
     const { status, timeseries, edgeValues } = this.state;
 
     return (
-      <div>
-        <h4>Country Name: {title}</h4>
-        <h5>Status: {status}</h5>
+      <div className="country">
+        <h3>Country Name: {title}</h3>
+        <h5 className="country__status">Status: {status}</h5>
         {
           timeseries && (
-            <div>
+            <div className="country__timeseries">
               <Graph timeseries={timeseries} />
-              <div>
-                Min value: {edgeValues.min.value} in time {edgeValues.min.time}
+              <div className="edge-values">
+                Min value: <span className="edge-values__data">{edgeValues.min.value}</span> in time <span className="edge-values__data">{edgeValues.min.time}</span>
               </div>
-              <div>
-                Max value: {edgeValues.max.value} in time {edgeValues.max.time}
+              <div className="edge-values">
+                Max value: <span className="edge-values__data">{edgeValues.max.value}</span> in time <span className="edge-values__data">{edgeValues.max.time}</span>
               </div>
             </div>
           )

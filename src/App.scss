@@ -1,3 +1,24 @@
-.App {
+.app {
   display: flex;
+  height: 100vh;
+  text-align: center;
+
+  &__navigation {
+    padding-left: 8px;
+    width: 15%;
+    min-width: 150px;
+    border-right: 1px solid #e8e8e8;
+    overflow-y: auto;
+  }
+
+  &__data-container {
+    padding-left: 20px;
+    width: 80%;
+    min-width: 850px;
+  }
+}
+
+.info {
+  position: relative;
+  top: 40vh;
 }
