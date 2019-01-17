@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "chart.js": "^2.7.3",
     "moment": "^2.23.0",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",

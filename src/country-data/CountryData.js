@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getCountryDataByID } from '../api';
 import moment from 'moment';
+import Graph from '../graph/Graph';
 import './CountryData.scss';
 
 class CountryData extends Component {
@@ -32,7 +33,7 @@ class CountryData extends Component {
     let min = timeseries[0];
     let max = timeseries[0];
     const defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
-    const newFormat = 'MMMM Do YYYY, h:mm:ss A (Z UTC)';
+    const newFormat = 'MMM D YYYY, h:mm:ss a (Z UTC)';
 
     timeseries.forEach(elem => {
       if (elem[1] < min[1]) min = elem;
@@ -55,7 +56,6 @@ class CountryData extends Component {
     const { title } = this.props;
     const { status, timeseries, edgeValues } = this.state;
 
-    // TODO: add graph
     return (
       <div>
         <h4>Country Name: {title}</h4>
@@ -63,6 +63,7 @@ class CountryData extends Component {
         {
           timeseries && (
             <div>
+              <Graph timeseries={timeseries} />
               <div>
                 Min value: {edgeValues.min.value} in time {edgeValues.min.time}
               </div>
