@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from 'chart.js';
+import './Graph.scss';
 
 class Graph extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Graph extends Component {
           type: 'time',
           time: {
             unit: 'month',
-            unitStepSize: 2,
+            unitStepSize: 1,
             tooltipFormat: 'MMM D YYYY, h:mm:ss a (Z UTC)',
             displayFormats: {
               month: 'MMM YYYY'
@@ -43,13 +44,13 @@ class Graph extends Component {
           },
           scaleLabel: {
             display: true,
-            labelString: 'Time'
+            labelString: 'Month'
           }
         }],
         yAxes: [{
           ticks: {
-            min: 0,
-            stepSize: 10
+            beginAtZero: true,
+            stepSize: 5
           },
           scaleLabel: {
             display: true,
@@ -77,7 +78,7 @@ class Graph extends Component {
           borderColor: 'blue',
           backgroundColor: 'transparent',
           pointRadius: 5,
-          pointHoverRadius: 10,
+          pointHoverRadius: 7,
           pointStyle: 'rectRounded'
         }]
       },
@@ -97,8 +98,8 @@ class Graph extends Component {
 
   render() {
     return (
-      <div>
-        <canvas ref={this.chartRef} width="1700" height="500" />
+      <div className="graph">
+        <canvas ref={this.chartRef} width="1600" height="500" />
       </div>
     );
   }

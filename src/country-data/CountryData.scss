@@ -1,0 +1,18 @@
+.country {
+  position: relative;
+  top: 20vh;
+
+  &__status {
+    color: #879999;
+  }
+
+  &__timeseries {
+    .edge-values {
+      height: 30px;
+
+      &__data {
+        font-weight: bold;
+      }
+    }
+  }
+}

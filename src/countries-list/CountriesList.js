@@ -16,19 +16,22 @@ class CountriesList extends Component {
   render() {
     const { countries } = this.state;
     return (
-      <ul className="countries-list">
-        {
-          countries && countries.map(country => (
-            <li
-              key={country.id}
-              onClick={() => this.props.onChooseCountry(country)}
-              className="countries-list__item"
-            >
-              {country.title}
-            </li>
-          ))
-        }
-      </ul>
+      <div className="menu">
+        <h3>Countries List</h3>
+        <ul className="countries-list">
+          {
+            countries && countries.map(country => (
+              <li
+                key={country.id}
+                onClick={() => this.props.onChooseCountry(country)}
+                className="countries-list__item"
+              >
+                {country.title}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     );
   }
 }
