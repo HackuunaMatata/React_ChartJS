@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getCountryDataByID } from '../api';
 import moment from 'moment';
+import { getCountryDataByID } from '../api';
 import Graph from '../graph/Graph';
 import './CountryData.scss';
 

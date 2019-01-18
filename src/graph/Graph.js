@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Chart from 'chart.js';
 import './Graph.scss';
 
-class Graph extends Component {
+class Graph extends PureComponent {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
