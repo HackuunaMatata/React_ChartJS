@@ -21,6 +21,10 @@ To start the fake API:
 
 `$ json-server --watch db.json`
 
+Run application:
+
+`npm start`
+
 ## API
 
 Country list:
