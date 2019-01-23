@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 import CountriesList from './countries-list/CountriesList';
 import CountryData from './country-data/CountryData';
+import 'babel-polyfill';
 
 class App extends Component {
   state = {

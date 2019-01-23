@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 const BASE_URL = 'http://localhost:3000';
 
 export function getCountriesList() {
