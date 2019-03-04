@@ -41,7 +41,5 @@ Please clone this repository, create a new branch, and then submit a pull reques
 
 You are free to use whatever framework/library you want.
 
-If you have any questions, please feel free to send me an email at jpeters@libertyglobal.com
-
 Thanks, and good luck :)
 
